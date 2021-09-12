@@ -72,7 +72,7 @@ class PPO(object):
             a_grads_and_vars = zip(a_grads, self.model_a.trainable_weights)
             self.opt_a.apply_gradients(a_grads_and_vars)
 
-            self.model_c.fit(s, r, verbose=0, shuffle=False)
+        self.model_c.fit(s, r, verbose=0, shuffle=False,epochs=UPDATE_STEP)
 
     def choose_action(self, s):
         s = s[np.newaxis, :]
@@ -129,4 +129,4 @@ if __name__ == '__main__':
             GLOBAL_RUNNING_R.append(GLOBAL_RUNNING_R[-1] * 0.9 + ep_r * 0.1)
         GLOBAL_EP += 1
         print(GLOBAL_EP, '|Ep_r: %.2f' % ep_r)
-        if ep_r > 180: render = True
+        # if ep_r > 180: render = True
