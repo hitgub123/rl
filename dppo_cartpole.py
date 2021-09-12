@@ -80,7 +80,7 @@ class PPO(object):
                     a_grads_and_vars = zip(a_grads, self.model_a.trainable_weights)
                     self.opt_a.apply_gradients(a_grads_and_vars)
 
-                self.model_c.fit(s, r, verbose=1, shuffle=False,epochs=UPDATE_STEP)
+                self.model_c.fit(s, r, verbose=0, shuffle=False,epochs=UPDATE_STEP)
 
                 UPDATE_EVENT.clear()        # updating finished
                 GLOBAL_UPDATE_COUNTER = 0   # reset counter
