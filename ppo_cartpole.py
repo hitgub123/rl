@@ -83,7 +83,7 @@ class PPO(object):
     def get_v(self, s):
         s = s.reshape(-1, S_DIM)
         v = self.model_c(s)
-        return v[0, 0]
+        return v
 
 
 if __name__ == '__main__':
@@ -111,7 +111,7 @@ if __name__ == '__main__':
                 if done:
                     v_s_ = 0  # end of episode
                 else:
-                    v_s_ = ppo.get_v(s_)
+                    v_s_ = ppo.get_v(s_)[0, 0]
 
                 discounted_r = []  # compute discounted reward
                 for r in buffer_r[::-1]:
