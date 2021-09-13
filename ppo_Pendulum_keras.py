@@ -25,7 +25,6 @@ a_bound = env.action_space.high[0]
 
 
 class PPO(object):
-
     def __init__(self):
         self.opt_a = tf.compat.v1.train.AdamOptimizer(A_LR)
         self.opt_c = tf.compat.v1.train.AdamOptimizer(C_LR)
