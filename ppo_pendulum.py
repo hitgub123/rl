@@ -19,7 +19,7 @@ C_UPDATE_STEPS = 10
 S_DIM, A_DIM = 3, 1
 epsilon=0.2
 
-env = gym.make('Pendulum-v0').unwrapped
+env = gym.make('Pendulum-v0')
 env.seed(1)
 a_bound = env.action_space.high[0]
 
@@ -98,6 +98,7 @@ for ep in range(EP_MAX):                    #train
         a = ppo.choose_action(s)
         s_, r, done, _ = env.step(a)
         s_ = np.reshape(s_, (-1, S_DIM))
+        # if done: r = -10              #unwrapped的Pendulum-v0貌似不可能done
         buffer_s.append(s)
         buffer_a.append(a)
         buffer_r.append((r + 8) / 8)  # normalize reward, find to be useful
